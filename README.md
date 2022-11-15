@@ -20,4 +20,6 @@ Services/api_services kısmında apilerle yaptığım işlemler mevcut.
 
 Uygulama Flutter 3.3.6 sürümüyle yapıldı.
 
+Yorum satırları mevcut.
+
 
