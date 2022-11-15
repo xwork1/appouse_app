@@ -1,6 +1,7 @@
 import 'package:appouse_app/constant.dart';
 import 'package:appouse_app/model/product_model.dart';
 import 'package:appouse_app/view/anasayfa/anasayfa_body.dart';
+import 'package:appouse_app/view/list_icon_pagination.dart';
 import 'package:appouse_app/view/urun/item_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
       title: const Text("Ürünler"),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+             Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const PaginationCarts(),
+              ),
+            );
+          },
           icon: const Icon(Icons.list),
         ),
         IconButton(

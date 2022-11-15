@@ -1,9 +1,5 @@
 import 'package:appouse_app/constant.dart';
-import 'package:appouse_app/view/anasayfa/anasayfa_screen.dart';
-import 'package:appouse_app/view/list_icon_pagination.dart';
 import 'package:appouse_app/view/login/login_screen.dart';
-import 'package:appouse_app/view/urun/item_screen.dart';
-import 'package:appouse_app/widget/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: kGreenColor,
         ),
-        home: PaginationCarts(),
+        home: const LoginScreen(),
       ),
     );
   }

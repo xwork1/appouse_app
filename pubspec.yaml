@@ -13,12 +13,13 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.6.0 #ekran boyutu ayarlama paketi
-  form_field_validator: ^1.1.0 #form validator paketi /kullanılmadı
+  form_field_validator: ^1.1.0 #form validator paketi 
   dio: ^4.0.6 #http request api çekme paketi
   get: ^4.6.5 #getx state manangement paketi
   loading_animation_widget: ^1.2.0+3 #animasyon yükleme paketi
   pull_to_refresh: ^2.0.0
-
+  fluttertoast: ^8.1.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

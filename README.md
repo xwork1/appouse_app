@@ -1,16 +1,23 @@
 # appouse_app
 
-A new Flutter project.
+-- Login ile iç sayfalara geçiş yapıldı
 
-## Getting Started
+-- CRUD işlemleri services/api_services.dart kısmında yapıldı.
 
-This project is a starting point for a Flutter application.
+--Pagination listeleme yapıldı özel olarak ayrı bir list ikon koyuldu onun üstünde denendi.
 
-A few resources to get you started if this is your first Flutter project:
+Ürün listeleme kısa olduğu için products kısmına pagination yapmadım
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Kategori bazlı filtreleme yapıldı.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+View kısımlarında screenler ayrıldı ayrı ayrı dosyalandı.
+
+Widget dosyasında Navigasyon Bar var. 
+
+Modelde ürünler ve user model ekli. Pagination için post apisi alındı onunda modeli eklendi.
+
+Services/api_services kısmında apilerle yaptığım işlemler mevcut. 
+
+Uygulama Flutter 3.3.6 sürümüyle yapıldı.
+
+
