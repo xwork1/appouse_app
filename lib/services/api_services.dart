@@ -111,7 +111,7 @@ class ApiServices {
   Future<List<Posts>> getCartsData({bool isRefresh = false}) async {
     List<Posts> _list = [];
     const limit = 25;
-    final url = 'https://dummyjson.com/posts?limit=$limit';
+    const url = 'https://dummyjson.com/posts?limit=$limit';
 
     final dio = Dio();
     
