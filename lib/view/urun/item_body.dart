@@ -51,15 +51,19 @@ class _ItemBodyState extends State<ItemBody> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        "Ürün ID: ${widget.products.id != null ? widget.products.id : ''}",
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.white),
+                      Expanded(
+                        child: Text(
+                          "Ürün ID: ${widget.products.id != null ? widget.products.id : ''}",
+                          style:
+                              const TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
-                      Text(
-                        "Ürün Başlığı: ${widget.products.title != null ? widget.products.title : ''}",
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.white),
+                      Expanded(
+                        child: Text(
+                          "Ürün Başlığı: ${widget.products.title != null ? widget.products.title : ''}",
+                          style:
+                              const TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ],
                   ),
