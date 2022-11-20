@@ -91,7 +91,7 @@ class _HomeBodyState extends State<HomeBody> {
             () => GestureDetector(
               onTap: (() {
                 _categoryBarController.selectedIndex.value = index;
-                if (index == 1) {
+                if (index == 0) {
                   data = 'category/laptops';
                   ApiServices().getProductData(data);
                 } else {

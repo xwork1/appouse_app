@@ -1,5 +1,6 @@
 import 'package:appouse_app/constant.dart';
 import 'package:appouse_app/view/login/login_screen.dart';
+import 'package:appouse_app/widget/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

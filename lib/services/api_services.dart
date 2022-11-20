@@ -6,6 +6,7 @@ import 'package:appouse_app/model/user_model.dart';
 import 'package:appouse_app/widget/nav_bar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ApiServices {
 //login
@@ -16,15 +17,22 @@ class ApiServices {
 
     final dio = Dio();
     Response response;
+    try {
+      response = await dio.post(api, data: data);
+      if (response.statusCode == 200) {
+        final body = response.data;
 
-    response = await dio.post(api, data: data);
-    if (response.statusCode == 200) {
-      final body = response.data;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const NavBar()));
 
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const NavBar()));
-      return Users(username: username, token: body['token']);
-    } else {}
+        return Users(username: username, token: body['token']);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: "Eposta veya şifre hatalı",
+      );
+    }
+
     return null;
   }
 
@@ -65,6 +73,7 @@ class ApiServices {
     response = await dio.put(url, data: data);
     if (response.statusCode == 200) {
       final body = response.data;
+      Fluttertoast.showToast(msg: "Güncelleme Başarılı");
       print(body);
     }
     return null;
@@ -87,6 +96,7 @@ class ApiServices {
     response = await dio.post(url, data: data);
     if (response.statusCode == 200) {
       final body = response.data;
+      Fluttertoast.showToast(msg: "Ekleme Başarılı");
       print(body);
     }
     return null;
@@ -114,7 +124,7 @@ class ApiServices {
     const url = 'https://dummyjson.com/posts?limit=$limit';
 
     final dio = Dio();
-    
+
     Response response;
 
     response = await dio.get(url);
@@ -122,10 +132,7 @@ class ApiServices {
     var body = response.data['posts'];
     if (body is List) {
       _list = body.map((e) => Posts.fromJson(e)).toList();
-      if (_list.length< limit) {
-        
-        
-      }
+      if (_list.length < limit) {}
       print(body);
     } else {
       return [];
@@ -133,3 +140,20 @@ class ApiServices {
     return _list;
   }
 }
+ /*  Future<List<ProductsModel>> getProductData(String kategori) async {
+    List<ProductsModel> _list = [];
+    final url = 'https://dummyjson.com/products/$kategori';
+
+    final dio = Dio();
+    Response response;
+    if (_list[0].category != "laptops" || _list[0].category != "smartphones") {
+      response = await dio.get(url);
+      var body = response.data['products'];
+      if (body is List) {
+        _list = body.map((e) => ProductsModel.fromJson(e)).toList();
+      }
+    } else {
+      return [];
+    }
+    return _list;
+  } */

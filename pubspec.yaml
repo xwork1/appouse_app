@@ -19,6 +19,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+3 #animasyon yükleme paketi
   pull_to_refresh: ^2.0.0
   fluttertoast: ^8.1.1
+  dropdown_button2: ^1.9.0
   
 dev_dependencies:
   flutter_test:

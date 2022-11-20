@@ -3,9 +3,11 @@
 import 'package:appouse_app/constant.dart';
 import 'package:appouse_app/model/product_model.dart';
 import 'package:appouse_app/services/api_services.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ItemBody extends StatefulWidget {
   final ProductsModel products;
@@ -54,15 +56,15 @@ class _ItemBodyState extends State<ItemBody> {
                       Expanded(
                         child: Text(
                           "Ürün ID: ${widget.products.id != null ? widget.products.id : ''}",
-                          style:
-                              const TextStyle(fontSize: 18, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 18, color: Colors.white),
                         ),
                       ),
                       Expanded(
                         child: Text(
                           "Ürün Başlığı: ${widget.products.title != null ? widget.products.title : ''}",
-                          style:
-                              const TextStyle(fontSize: 18, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 18, color: Colors.white),
                         ),
                       ),
                     ],
@@ -76,140 +78,163 @@ class _ItemBodyState extends State<ItemBody> {
       ),
     );
   }
+
   //Tıklanılan ürünlerin bilgileri
   Positioned itemList(Size size) {
     return Positioned(
-                top: 100.h,
-                right: 5,
-                left: 5,
-                child: Container(
-                  height: size.height,
-                  margin: const EdgeInsets.all(kDefaultMargin),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        blurRadius: 0.3,
-                      ),
-                    ],
+      top: 100.h,
+      right: 5,
+      left: 5,
+      child: Container(
+        height: size.height,
+        margin: const EdgeInsets.all(kDefaultMargin),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              blurRadius: 0.3,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      "Ürün ID: ${widget.products.id != null ? widget.products.id : ''}"),
+                  const Divider(),
+                  TextField(
+                    controller: _editTitleController,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText:
+                            'Ürün Başlığı: ${widget.products.title != null ? widget.products.title : ''}',
+                        hintText: widget.products.title != null
+                            ? widget.products.title
+                            : ''),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                "Ürün ID: ${widget.products.id != null ? widget.products.id : ''}"),
-                            const Divider(),
-                            TextField(
-                              controller: _editTitleController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  labelText:
-                                      'Ürün Başlığı: ${widget.products.title != null ? widget.products.title : ''}',
-                                  hintText: widget.products.title != null
-                                      ? widget.products.title
-                                      : ''),
-                            ),
-                            const Divider(),
-                            TextField(
-                              controller: _editDescriptionController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  labelText:
-                                      'Ürün Açıklaması: ${widget.products.description != null ? widget.products.description : ''}',
-                                  hintText:
-                                      widget.products.description != null
-                                          ? widget.products.description
-                                          : ''),
-                            ),
-                            const Divider(),
-                            TextField(
-                              controller: _editPriceController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  labelText:
-                                      'Fiyat: ${widget.products.price != null ? widget.products.price : ''}',
-                                  hintText: widget.products.price != null
-                                      ? widget.products.price.toString()
-                                      : ''),
-                            ),
-                            const Divider(),
-                            TextField(
-                              controller: _editCategoryController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  labelText:
-                                      'Kategori: ${widget.products.category != null ? widget.products.category : ''}',
-                                  hintText: widget.products.category != null
-                                      ? widget.products.category
-                                      : ''),
-                            ),
-                            const Divider(),
-                            TextField(
-                              controller: _editUploadimgController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  labelText:
-                                      'Resim Yükle: ${widget.products.thumbnail != null ? widget.products.thumbnail : ''}',
-                                  hintText: widget.products.thumbnail != null
-                                      ? widget.products.thumbnail != null
-                                          ? widget.products.thumbnail
-                                          : ''
-                                      : ''),
-                            ),
-                            const Divider(),
-                          ],
+                  const Divider(),
+                  TextField(
+                    controller: _editDescriptionController,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText:
+                            'Ürün Açıklaması: ${widget.products.description != null ? widget.products.description : ''}',
+                        hintText: widget.products.description != null
+                            ? widget.products.description
+                            : ''),
+                  ),
+                  const Divider(),
+                  TextField(
+                    controller: _editPriceController,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText:
+                            'Fiyat: ${widget.products.price != null ? widget.products.price : ''}',
+                        hintText: widget.products.price != null
+                            ? widget.products.price.toString()
+                            : ''),
+                  ),
+                  const Divider(),
+                  //dropdown
+                  DropdownButtonHideUnderline(
+                    child: DropdownButton2(
+                      hint: Text(
+                        'Kategori',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).hintColor,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: kSaveColor
-                              ),
-                              child: const Text("KAYDET"),
-                              onPressed: () {
-                                final Map payload = {
-                                  'title': _editTitleController.text,
-                                  'description':
-                                      _editDescriptionController.text,
-                                  'price': _editPriceController.text,
-                                  'category': _editCategoryController.text,
-                                  'thumbnail': _editUploadimgController.text,
-                                };
-                                if (widget.products.id == null) {
-                                  ApiServices().addProduct(payload);
-                                } else {
-                                  ApiServices().updateProduct(
-                                      widget.products.id.toString(), payload);
-                                }
-                              },
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: kRedColor
-                              ),
-                              child: const Text(
-                                "Sil",
-                                textAlign: TextAlign.center,
-                                
-                              ),
-                              onPressed: () {
-                                ApiServices().deleteProduct(
-                                    widget.products.id.toString());
-                              },
-                            ),
-                          ],
-                        )
-                      ],
+                      ),
+                      items: items
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                      value: selectedValue,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedValue = value as String;
+                        });
+                      },
+                      buttonHeight: 40,
+                      buttonWidth: 140,
+                      itemHeight: 40,
                     ),
                   ),
-                ),
-              );
+                  const Divider(),
+                  TextField(
+                    controller: _editUploadimgController,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText:
+                            'Resim Yükle: ${widget.products.thumbnail != null ? widget.products.thumbnail : ''}',
+                        hintText: widget.products.thumbnail != null
+                            ? widget.products.thumbnail != null
+                                ? widget.products.thumbnail
+                                : ''
+                            : ''),
+                  ),
+                  const Divider(),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: kSaveColor),
+                    child: const Text("KAYDET"),
+                    onPressed: () {
+                      final Map payload = {
+                        'title': _editTitleController.text,
+                        'description': _editDescriptionController.text,
+                        'price': _editPriceController.text,
+                        'category': selectedValue,
+                        'thumbnail': _editUploadimgController.text,
+                      };
+                      if (widget.products.id == null) {
+                        ApiServices().addProduct(payload);
+                      } else {
+                        ApiServices().updateProduct(
+                            widget.products.id.toString(), payload);
+                      }
+                    },
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: kRedColor),
+                    child: const Text(
+                      "Sil",
+                      textAlign: TextAlign.center,
+                    ),
+                    onPressed: () {
+                      ApiServices()
+                          .deleteProduct(widget.products.id.toString());
+                    },
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
+
+  final List<String> items = [
+    'Laptop',
+    'Telefon',
+  ];
+  String? selectedValue;
 }
