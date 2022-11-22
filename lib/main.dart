@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: kGreenColor,
         ),
-        home: const LoginScreen(),
+        home: const NavBar(),
       ),
     );
   }

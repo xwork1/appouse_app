@@ -26,7 +26,9 @@ class _HomeBodyState extends State<HomeBody> {
         child: Column(
           children: [
             Container(
-              decoration: const BoxDecoration(),
+              decoration: const BoxDecoration(
+                color: Colors.black
+              ),
               height: size.height,
               child: Stack(
                 children: [
@@ -46,7 +48,7 @@ class _HomeBodyState extends State<HomeBody> {
                     right: 0,
                     left: 0,
                     child: Container(
-                      height: size.height - 100.h,
+                      height: size.height -100.h,
                       margin: const EdgeInsets.all(kDefaultMargin),
                       decoration: BoxDecoration(
                         color: Colors.white,
